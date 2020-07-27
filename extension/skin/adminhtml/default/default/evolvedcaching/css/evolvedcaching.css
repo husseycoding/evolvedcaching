@@ -1,0 +1,3 @@
+#evolvedcaching_entries_table tr.expired { color:#999; }
+#evolvedcaching_entries_table tr.expired td.expired span { display:none; }
+.adminhtml-adminhtml-cacheentries-index p.expired_comment { clear:left; padding-top:5px; }

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="content">
+            <block type="evolvedcaching/admin" name="evolvedadmin" template="evolvedcaching/admin.phtml" after="-" />
+        </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>evolvedcaching/js/cookie.js</name>
+            </action>
+        </reference>
+    </default>
+    <adminhtml_index_login>
+        <reference name="form.additional.info">
+            <block type="evolvedcaching/admin" name="evolvedadmin" template="evolvedcaching/admin.phtml" after="-" />
+        </reference>
+    </adminhtml_index_login>
+    <adminhtml_adminhtml_cacheentries_index>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>evolvedcaching/js/evolvedcaching.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>evolvedcaching/css/evolvedcaching.css</name>
+            </action>
+        </reference>
+        <reference name="content">
+            <block type="evolvedcaching/adminhtml_evolvedcaching" name="evolvedcaching_entries" />
+            <block type="evolvedcaching/refresh" name="evolvedrefresh" template="evolvedcaching/refresh.phtml" after="-" />
+            <block type="evolvedcaching/viewCache" name="evolvedviewcache" template="evolvedcaching/viewcache.phtml" after="evolvedrefresh" />
+            <block type="evolvedcaching/crawler" name="evolvedcrawler" template="evolvedcaching/crawler.phtml" after="evolvedviewcache" />
+        </reference>
+    </adminhtml_adminhtml_cacheentries_index>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>evolvedcaching/js/holding.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>evolvedcaching/js/config.js</name>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
+</layout>

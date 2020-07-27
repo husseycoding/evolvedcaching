@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <system>
+            <children>
+                <cacheentries translate="title">
+                    <title>Full Page Cache Entries</title>
+                    <action>adminhtml/adminhtml_cacheEntries</action>
+                    <sort_order>91</sort_order>
+                </cacheentries>
+            </children>
+        </system>
+    </menu>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <evolvedcaching module="evolvedcaching">
+                                        <title>Evolved Caching</title>
+                                    </evolvedcaching>
+                                </children>
+                            </config>
+                            <cacheentries>
+                                <title>Full Page Cache Entries</title>
+                            </cacheentries>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

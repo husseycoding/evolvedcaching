@@ -1,0 +1,25 @@
+<?php if ($this->isEnabled()): ?>
+    <script type="text/javascript">
+    //<![CDATA[
+        var thisevolvedupdate = new evolvedupdate();
+        <?php if ($blocks = $this->getBlocks()): ?>
+            thisevolvedupdate.blocks = {};
+            <?php foreach ($blocks as $key => $block): ?>
+                thisevolvedupdate.blocks["<?php echo $key; ?>"] = "<?php echo $block; ?>";
+            <?php endforeach; ?>
+        <?php endif; ?>
+        
+        thisevolvedupdate.fadespeed = <?php echo $this->getFadeSpeed(); ?>;
+        thisevolvedupdate.slidespeed = <?php echo $this->getSlideSpeed(); ?>;
+        thisevolvedupdate.price = <?php echo $this->getExcludeConfig('price'); ?>;
+        thisevolvedupdate.creview = <?php echo $this->getExcludeConfig('creview'); ?>;
+        thisevolvedupdate.cart = <?php echo $this->getExcludeConfig('cart'); ?>;
+        thisevolvedupdate.preview = <?php echo $this->getExcludeConfig('preview'); ?>;
+        thisevolvedupdate.tier = <?php echo $this->getExcludeConfig('tier'); ?>;
+        thisevolvedupdate.welcome = <?php echo $this->getExcludeConfig('welcome'); ?>;
+        thisevolvedupdate.isreview = <?php echo $this->getReviewModule(); ?>;
+        thisevolvedupdate.useajax = <?php echo $this->getUseAjax(); ?>;
+        thisevolvedupdate.excludedpage = <?php echo $this->getExcludedPage(); ?>;
+    //]]>
+    </script>
+<?php endif; ?>

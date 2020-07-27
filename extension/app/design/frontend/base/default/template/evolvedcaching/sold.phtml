@@ -1,0 +1,9 @@
+<?php if ($ids = $this->getOrderIds()): ?>
+    <script type="text/javascript">
+    //<![CDATA[
+        var thisevolvedsold = new evolvedsold();
+        thisevolvedsold.url = "<?php echo $this->getUrl('evolvedcaching/frontend_sold/refresh', array('_secure' => $this->getRequest()->isSecure())); ?>";
+        thisevolvedsold.ids = "<?php echo $ids; ?>";
+    //]]>
+    </script>
+<?php endif; ?>

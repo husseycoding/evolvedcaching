@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="content">
+            <block type="evolvedcaching/cookie" name="evolvedcookie" template="evolvedcaching/cookie.phtml" after="-" />
+            <block type="evolvedcaching/update" name="evolvedupdate" template="evolvedcaching/update.phtml" before="evolvedcookie" />
+        </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/evolvedcaching.js</name>
+            </action>
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/evolvedcaching_md5.js</name>
+            </action>
+        </reference>
+    </default>
+    <checkout_multishipping_success>
+        <update handle="evolved_refresh_sold" />
+        <reference name="evolvedsold">
+            <action method="setData">
+                <name>order_type</name>
+                <value>multi</value>
+            </action>
+        </reference>
+    </checkout_multishipping_success>
+    <checkout_onepage_success>
+        <update handle="evolved_refresh_sold" />
+        <reference name="evolvedsold">
+            <action method="setData">
+                <name>order_type</name>
+                <value>onepage</value>
+            </action>
+        </reference>
+    </checkout_onepage_success>
+    <evolved_refresh_sold>
+        <reference name="content">
+            <block type="evolvedcaching/sold" name="evolvedsold" template="evolvedcaching/sold.phtml" after="-" />
+        </reference>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_js</type>
+                <name>js/evolvedsold.js</name>
+            </action>
+        </reference>
+    </evolved_refresh_sold>
+</layout>

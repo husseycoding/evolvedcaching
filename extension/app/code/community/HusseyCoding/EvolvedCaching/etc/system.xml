@@ -1,0 +1,767 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <evolvedcaching translate="label">
+            <label>Evolved Caching</label>
+            <tab>husseycoding</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <general translate="label">
+                    <label>General</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_general</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </guide>
+                        <useajax>
+                            <label>Dynamic Content Stategy</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>evolvedcaching/system_config_source_dynamic</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>BigPipe will add dynamic content immediately rather than via AJAX on page load.</comment>
+                        </useajax>
+                        <flushvarnish>
+                            <label>Flush Varnish Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>If used should the Varnish cache also be cleared when removing cache entries.</comment>
+                        </flushvarnish>
+                        <mustlogin>
+                            <label>User Login Required</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enable this if users must login before they are able to access the site.</comment>
+                        </mustlogin>
+                        <crawlcurrency>
+                            <label>Crawler Currencies</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>evolvedcaching/system_config_source_currency</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Each additional currency doubles the number of pages crawled.</comment>
+                        </crawlcurrency>
+                        <refreshexpired>
+                            <label>Refresh Expired</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Should the full page cache entries refresh button recreate expired cache.</comment>
+                        </refreshexpired>
+                        <usecompression>
+                            <label>Compress Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>evolvedcaching/system_config_source_compression</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Configure memcached separately. Requires zlib.</comment>
+                        </usecompression>
+                        <proxy>
+                            <label>Use Proxy</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Use a proxy for curl requests (cache warming etc).  Ignored if empty, populate as IP:port i.e. 123.4.5.6:7000 or 123.4.5.6.</comment>
+                        </proxy>
+                        <merged>
+                            <label>Common Merged Filenames</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Generate merged JS and CSS file names based on layout handle, not file names.</comment>
+                        </merged>
+                    </fields>
+                </general>
+                <storage translate="label">
+                    <label>Cache Storage Configuration</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>2</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[<div>Cached pages can be stored to the filesystem, Redis*, APC* or Memcached*.  If using Memcached you must configure the server to be used and it is recommended that this server is only used for Evolved Caching.</div><div style="font-size:0.9em; padding:4px 0 10px">* only available if installed and enabled on the server</div>]]></comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_storage</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </guide>
+                        <use>
+                            <label>Cache Storage Type</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>evolvedcaching/system_config_source_type</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use>
+                        <comment1>
+                            <label><![CDATA[<div style="font-weight:bold; padding-top:10px">APC Configuration</div>]]></label>
+                            <frontend_type>hidden</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </comment1>
+                        <apcexpires>
+                            <label>Cache Expiration Time</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. In seconds, defaults to never expires. If set expiration time resets when page is viewed.</comment>
+                        </apcexpires>
+                        <comment2>
+                            <label><![CDATA[<div style="font-weight:bold; padding-top:10px">Memcached Configuration</div>]]></label>
+                            <frontend_type>hidden</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </comment2>
+                        <host>
+                            <label>Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. Defaults to 127.0.0.1.</comment>
+                        </host>
+                        <port>
+                            <label>Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. Defaults to 11211.</comment>
+                        </port>
+                        <persistent>
+                            <label>Use Persistent Connection</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </persistent>
+                        <compression>
+                            <label>Use Compression</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>evolvedcaching/system_config_source_compression</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Requires zlib.</comment>
+                        </compression>
+                        <threshold>
+                            <label>Compression Threshold</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. Data size in kB over which compression should be used.</comment>
+                        </threshold>
+                        <saving>
+                            <label>Compression Saving</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional, defaults to 20%. Only store compressed if data is this percentage smaller or more.</comment>
+                        </saving>
+                        <memcachedexpires>
+                            <label>Cache Expiration Time</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. In seconds, defaults to never expires. If set expiration time resets when page is viewed.</comment>
+                        </memcachedexpires>
+                        <comment3>
+                            <label><![CDATA[<div style="font-weight:bold; padding-top:10px">Redis Configuration</div>]]></label>
+                            <frontend_type>hidden</frontend_type>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </comment3>
+                        <rhost>
+                            <label>Host</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. Defaults to 127.0.0.1.</comment>
+                        </rhost>
+                        <rport>
+                            <label>Port</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. Defaults to 6379.</comment>
+                        </rport>
+                        <rtimeout>
+                            <label>Timeout</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Cache lifetime, optional. Enter in seconds.</comment>
+                        </rtimeout>
+                        <rpersistence>
+                            <label>Persistence</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional.</comment>
+                        </rpersistence>
+                        <rdatabase>
+                            <label>Database</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional. Defaults to 0.</comment>
+                        </rdatabase>
+                        <rpassword>
+                            <label>Password</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>19</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optional.</comment>
+                        </rpassword>
+                    </fields>
+                </storage>
+                <exclude translate="label">
+                    <label>Caching Exclusions</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>3</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment><![CDATA[<p>Configure block names and entire pages to be excluded from caching.  Append ?shownames to any url to display the block names you can enter in the excluded blocks section below.</p><p><i>Note that modifications to the HTML that template files generate could cause the dynamic options at the bottom of this section to fail however behaviour can be <a href="http://store.husseycoding.co.uk/evolved-caching/documentation/developer-resources/" target="_blank">customised</a>.</i></p>]]></comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_exclude</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </guide>
+                        <blocks>
+                            <label>Excluded Blocks</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list, use the layout block name not alias.  The following blocks are ignored - root, head, header, left, right, content and footer.</comment>
+                        </blocks>
+                        <blocks_holding>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </blocks_holding>
+                        <blocks_html>
+                            <label>Block Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </blocks_html>
+                        <pages>
+                            <label>Excluded Pages</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Enter partial or complete url's excluding the hostname.</comment>
+                        </pages>
+                        <arguments>
+                            <label>Ignored URL Arguments</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Enter URL arguments you want caching to ignore i.e to ignore ?argument=value, enter argument.</comment>
+                        </arguments>
+                        <price>
+                            <label>Dynamic Category Prices</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>When using a complex pricing structure (for instance involving customer groups or when using multiple currencies) enable this to allow dynamic updating of category pages prices.</comment>
+                        </price>
+                        <price_holding>
+                            <label>Dynamic Category Prices Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optionally enter HTML here you want to display before dynamic content has loaded.</comment>
+                        </price_holding>
+                        <creview>
+                            <label>Dynamic Category Reviews</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>9</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable this if you display review summaries on your category pages.</comment>
+                        </creview>
+                        <creview_holding>
+                            <label>Dynamic Category Reviews Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optionally enter HTML here you want to display before dynamic content has loaded.</comment>
+                        </creview_holding>
+                        <cart>
+                            <label>Dynamic Category Stock Status</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>If you have category autoclear/warm cache enabled then you should not need to enable this even if you use stock management. Enable this if you use stock management and are not using category autoclear/warm.</comment>
+                        </cart>
+                        <cart_holding>
+                            <label>Dynamic Category Stock Status Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>12</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optionally enter HTML here you want to display before dynamic content has loaded.</comment>
+                        </cart_holding>
+                        <preview>
+                            <label>Dynamic Product Reviews</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>13</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable this if you display review summaries on your product pages.</comment>
+                        </preview>
+                        <preview_holding>
+                            <label>Dynamic Product Reviews Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optionally enter HTML here you want to display before dynamic content has loaded.</comment>
+                        </preview_holding>
+                        <tier>
+                            <label>Dynamic Product Tier Pricing</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>15</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable this if you use different tiered pricing for different customer groups.</comment>
+                        </tier>
+                        <tier_holding>
+                            <label>Dynamic Product Tier Pricing Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>16</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optionally enter HTML here you want to display before dynamic content has loaded.</comment>
+                        </tier_holding>
+                        <welcome>
+                            <label>Dynamic Welcome Message</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>17</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Enable this to dynamically update the header welcome message.</comment>
+                        </welcome>
+                        <welcome_holding>
+                            <label>Dynamic Welcome Message Holding HTML</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>18</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Optionally enter HTML here you want to display before dynamic content has loaded.</comment>
+                        </welcome_holding>
+                    </fields>
+                </exclude>
+                <agent translate="label">
+                    <label>User Agent</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>4</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>Enter here user agents to be cached separately.  Ensure you use the same string here to identify each agent as for loading agent specific theme content (such as mobile themes).</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_agent</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </guide>
+                        <agents>
+                            <label>Agents</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated, case sensitive list.  Enter as follows (agent1,agent2,agent3),agent4,agent5.  Group agents with brackets for common caching.</comment>
+                        </agents>
+                    </fields>
+                </agent>
+                <headers translate="label">
+                    <label>Output Headers</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>Add page specific headers you want to output when a cached page loads.  For arguments use a semi-colon i.e. WWW-Authenticate:NTLM;false, test:value.  These will be inserted individually into the header() function automatically at run time.</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_headers</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </guide>
+                        <home>
+                            <label>Home Page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Enter 'none' for no headers.</comment>
+                        </home>
+                        <cms>
+                            <label>CMS Page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Enter 'none' for no headers.</comment>
+                        </cms>
+                        <product>
+                            <label>Product Page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Enter 'none' for no headers.</comment>
+                        </product>
+                        <category>
+                            <label>Category Page</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Enter 'none' for no headers.</comment>
+                        </category>
+                        <other>
+                            <label>All Pages</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Comma separated list.  Will only output if applicable headers above are empty.  Enter 'none' for no headers.</comment>
+                        </other>
+                    </fields>
+                </headers>
+                <cookie translate="label">
+                    <label>Caching Key Cookie</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>6</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>Here you can choose to output a cookie containing a unique caching key on page change.  This cookie, named 'evolved_key', can then be used by a caching system such as Varnish to create a page caching hash.  If you choose to include the area then this will be prepended to the key in the cookie content.</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_cookie</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </guide>
+                        <use>
+                            <label>Enable Cookie</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </use>
+                        <area>
+                            <label>Include Area</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Should cookie content include the area (product, category, cms, home or other).</comment>
+                        </area>
+                    </fields>
+                </cookie>
+                <autoclear translate="label">
+                    <label>Automatic Cache Clearing</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>7</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment>Here you can define if associated cached pages should automatically be cleared when saving cms, product and category pages.  You can also choose to clear the blocks HTML standard cache type at the same time.</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_autoclear</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </guide>
+                        <cms>
+                            <label>Autoclear CMS Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </cms>
+                        <product>
+                            <label>Autoclear Product Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Also clears any category pages product is assigned to.</comment>
+                        </product>
+                        <category>
+                            <label>Autoclear Category Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </category>
+                        <blocks>
+                            <label>Autoclear Blocks HTML Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>5</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>This clears the standard blocks HTML cache when saving cms, product and category pages.</comment>
+                        </blocks>
+                    </fields>
+                </autoclear>
+                <autowarm translate="label">
+                    <label>Automatic Cache Warming</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>8</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment>When you have automatic cache clearing enabled, you can choose to automatically regenerate the deleted cache.</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_autowarm</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </guide>
+                        <enabled>
+                            <label>Autowarm Deleted Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enabled>
+                        <cron>
+                            <label>Warming Strategy</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>evolvedcaching/system_config_source_strategy</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Immediate warms cache on save but may impact save times.</comment>
+                        </cron>
+                        <always>
+                            <label>Always Warm Pages</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>4</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <comment>Enabling this will cause pages to be warmed even if they don't exist in the cache.</comment>
+                        </always>
+                    </fields>
+                </autowarm>
+                <lock translate="label">
+                    <label>Cache Locking</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>9</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>0</show_in_website>
+                    <show_in_store>0</show_in_store>
+                    <comment>When locked the full page cache will be cleared when clicking 'Flush Cache Storage' but not 'Flush Magento Cache' under Cache Management.</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_lock</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </guide>
+                        <enabled>
+                            <label>Lock Cache</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </enabled>
+                    </fields>
+                </lock>
+                <load translate="label">
+                    <label>Dynamic Content Display</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <comment>Here you can choose how uncached blocks are displayed on page load.  Only relevant when loading dynamic content via AJAX.</comment>
+                    <fields>
+                        <guide translate="label">
+                            <label>Guide</label>
+                            <frontend_model>evolvedcaching/adminhtml_config_guide_load</frontend_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </guide>
+                        <fadespeed>
+                            <label>Fade Speed</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Defaults to 0.4. Higher is slower, 0 is instant.</comment>
+                        </fadespeed>
+                        <slidespeed>
+                            <label>Slide Speed</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                            <comment>Defaults to 0. Higher is slower, 0 is instant.</comment>
+                        </slidespeed>
+                    </fields>
+                </load>
+            </groups>
+        </evolvedcaching>
+    </sections>
+</config>

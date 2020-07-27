@@ -1,0 +1,24 @@
+<?php if ($this->useCookie()): ?>
+    <?php $modifiers = $this->getPageModifiers(); ?>
+    <?php $layered = $this->getLayeredModifiers(); ?>
+    <script type="text/javascript">
+    //<![CDATA[
+        var thisevolvedcookie = new evolvedcookie();
+        
+        thisevolvedcookie.modifiers = {};
+        <?php foreach ($modifiers as $key => $modifier): ?>
+            thisevolvedcookie.modifiers["<?php echo $this->htmlEscape($key); ?>"] = "<?php echo $this->htmlEscape($modifier); ?>";
+        <?php endforeach; ?>
+        
+        thisevolvedcookie.layeredkeys = {};
+        <?php foreach ($layered as $key => $l): ?>
+            thisevolvedcookie.layeredkeys["<?php echo $this->htmlEscape($key); ?>"] = "<?php echo $this->htmlEscape($l); ?>";
+        <?php endforeach; ?>
+        <?php if (Mage::getStoreConfig('evolvedcaching/cookie/area')): ?>
+            thisevolvedcookie.usearea = true;
+        <?php else: ?>
+            thisevolvedcookie.usearea = false;
+        <?php endif; ?>
+    //]]>
+    </script>
+<?php endif; ?>
